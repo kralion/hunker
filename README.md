@@ -1,1 +1,1 @@
-## Next.js 14 Course
+## Next.js 14
