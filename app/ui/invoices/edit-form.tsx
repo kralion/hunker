@@ -50,6 +50,11 @@ export default function EditInvoiceForm({
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
+          {state.errors?.customerId && (
+            <p id="customer-error" className="mt-2 text-sm text-red-600">
+              {state.errors.customerId}
+            </p>
+          )}
         </div>
 
         {/* Invoice Amount */}
@@ -66,10 +71,16 @@ export default function EditInvoiceForm({
                 defaultValue={invoice.amount}
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                aria-describedby="amount-error"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
+          {state.errors?.amount && (
+            <p id="amount-error" className="mt-2 text-sm text-red-600">
+              {state.errors.amount}
+            </p>
+          )}
         </div>
 
         {/* Invoice Status */}
@@ -78,7 +89,7 @@ export default function EditInvoiceForm({
             Set the invoice status
           </label>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
-            <div className="flex gap-4">
+            <div className="flex gap-4" aria-describedby="status-error">
               <div className="flex items-center">
                 <input
                   id="pending"
@@ -113,6 +124,14 @@ export default function EditInvoiceForm({
               </div>
             </div>
           </div>
+          {state.errors?.status && (
+            <p id="status-error" className="mt-2 text-sm text-red-600">
+              {state.errors.status}
+            </p>
+          )}
+          {state.message && (
+            <p className="mt-2 text-sm text-red-600">{state.message}</p>
+          )}
         </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
